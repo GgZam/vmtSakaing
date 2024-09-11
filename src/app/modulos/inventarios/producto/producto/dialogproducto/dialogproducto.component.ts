@@ -7,9 +7,16 @@ import { Component } from '@angular/core';
 })
 export class DialogproductoComponent {
 
+  nombre: string;
+  precio: number;
+  categoria: string;
+  empresa: string;
+  proveedor: string;
+  status: string;
+
   visibleClient: boolean = false;
 
-  statuses: any [] = [
+  statuses: any[] = [
     {
       label: 'Activo',
       value: 'activo'
@@ -19,5 +26,9 @@ export class DialogproductoComponent {
       value: 'inactivo'
     },
   ]
+
+  guardar() {
+    console.log(this.nombre);
+  }
 
 }

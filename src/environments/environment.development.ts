@@ -1,6 +1,9 @@
 export const environment = {
     production: false,
-    vmtDevApiUrl: 'https://af86-45-236-141-99.ngrok-free.app',
-    pathAutetication: '/UsuarioAutenticacion/GetUsuarioAutentication',
-    pathGetProductos: '/Producto/RestProducto'
+    vmtDevApiUrl: 'http://localhost:5073',
+    pathAutetication: '/UsuarioAutenticacion/GetUsuarioAutenticacion',
+    pathGetClientes: '/Catalogo/GetCliente',
+    pathGetProductos: '/Producto/GetProducto',
+    pathPutProductos: '/Producto/PutProducto',
+    pathGetEmpresa: '/Empresa/GetEmpresa'
 };

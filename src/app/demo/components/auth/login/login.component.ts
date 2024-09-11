@@ -31,17 +31,17 @@ export class LoginComponent {
         private changeDetector: ChangeDetectorRef) { }
 
     login() {
-        let dataLogin: any = { opcionQuery: 'login', dataQuery: this.usuario, dataDobleQuery: this.password };
+        let dataLogin: any = { user: this.usuario, password: this.password };
  
         let loginRequest: any = {
-            user:'',
-            ip: '0.0.0.0',
-            data: JSON.stringify(dataLogin)
+            User:'',
+            IP: '',
+            Data: JSON.stringify(dataLogin)
         }
 
         this.authService.login(loginRequest).subscribe({
             next: (resp) => {
-                if(resp.codigo === '000'){
+                if(resp.cod === '000'){
                     this.afterLoginService.dataAfterLogin(resp);
                     this.changeDetector.detectChanges();
                     this.router.navigate(['/vmtdev/home']);

@@ -10,6 +10,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { InputTextModule } from 'primeng/inputtext';
     CalendarModule,
     DropdownModule,
     DividerModule,
-    InputTextModule
+    InputTextModule,
+    FormsModule
   ]
 })
 export class ProductoModule { }

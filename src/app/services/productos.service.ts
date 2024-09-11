@@ -10,11 +10,19 @@ export class ProductosService {
 
   private urlBase: string = environment.vmtDevApiUrl;
   private uriGetProducto: string = environment.pathGetProductos;
+  private uriGuardarProducto: string = environment.pathPutProductos;
 
-  constructor( private httpClient: HttpClient ) {}
+  constructor(private httpClient: HttpClient) { }
 
-  getProductos(rqGetProductos: any) : Observable<any> {
+  //Consulta: FindAll - Todos los registros de una entidad
+  getProductos(rqGetProductos: any): Observable<any> {
     let urlGetProducto = this.urlBase + this.uriGetProducto;
-    return this.httpClient.post( urlGetProducto, rqGetProductos );
+    return this.httpClient.post(urlGetProducto, rqGetProductos);
+  }
+
+  //mantenimiento: Guardar, actualizar y eliminar (eliminación lógica) un producto
+  mantenimientoProducto(rqMantenimiento: any): Observable<any> {
+    let urlGuardarProducto = this.urlBase + this.uriGuardarProducto;
+    return this.httpClient.post(urlGuardarProducto, rqMantenimiento);
   }
 }

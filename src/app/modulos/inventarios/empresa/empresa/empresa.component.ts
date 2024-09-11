@@ -2,37 +2,36 @@ import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/co
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
-import { DialogproductoComponent } from './dialogproducto/dialogproducto.component';
-import { ProductosService } from 'src/app/services/productos.service';
+import { DialogempresaComponent } from './dialogempresa/dialogempresa.component';
+import { EmpresasService } from 'src/app/services/empresas.service';
 
 @Component({
   selector: 'app-componente',
-  templateUrl: './producto.component.html',
+  templateUrl: './empresa.component.html',
   styles: ``,
   providers: [MessageService, ConfirmationService]
 })
-export class ProductoComponent implements OnInit, AfterViewInit {
+export class EmpresaComponent implements OnInit, AfterViewInit {
 
-  constructor(public layoutService: LayoutService,
-    private messageService: MessageService) { }
-  loading: boolean = true;
+  constructor(public layoutService: LayoutService, private messageService: MessageService) { }
+  loading: boolean = false;
 
-  productoService = inject(ProductosService);
+  empresaService = inject(EmpresasService);
 
   ngAfterViewInit(): void {
-    let datarq = {
+    let datarqEmpresa = {
       "OpcionData": "all"
     }
 
-    let getProductrequest: any = {
+    let getEmpresarequest: any = {
       User: '',
       IP: '',
-      Data: datarq
+      Data: JSON.stringify(datarqEmpresa)
     }
 
-    this.productoService.getProductos(getProductrequest).subscribe({
-      next: (resProductos) => {
-        this.cargarProductos(resProductos);
+    this.empresaService.getEmpresa(getEmpresarequest).subscribe({
+      next: (resEmpresa) => {
+        this.cargarEmpresa(resEmpresa);
         this.loading = false;
       },
       error: (err) => {
@@ -43,9 +42,11 @@ export class ProductoComponent implements OnInit, AfterViewInit {
 
   activityValues: number[] = [0, 100];
 
-  @ViewChild(DialogproductoComponent) dialogoCliente: DialogproductoComponent;
+  @ViewChild('dialogoEmpresa') dialogoCliente: DialogempresaComponent;
 
-  productos: any[] = [];
+  empresas: any[] = [
+
+  ];
 
   statuses = [
     { label: 'Inactivo', value: 'unqualified' },
@@ -54,6 +55,8 @@ export class ProductoComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
+
+
   }
 
 
@@ -61,7 +64,7 @@ export class ProductoComponent implements OnInit, AfterViewInit {
     this.dialogoCliente.visibleClient = true;
   }
 
-  cargarProductos(resp: any) {
-    this.productos = resp.data;
+  cargarEmpresa(resp: any) {
+    this.empresas = resp.data;
   }
 }
