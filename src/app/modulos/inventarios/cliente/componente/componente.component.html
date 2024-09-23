@@ -1,121 +1,56 @@
 <div class="grid">
 	<div class="col-12">
-		<div class="text-900 font-bold text-6xl mb-4 text-left">Clientes</div>
-		<div class="card">
-			<h5>Lista de clientes</h5>
-			<p-table [value]="clientes" [loading]="loading">
-				<ng-template pTemplate="caption">
-					<div class="flex justify-content-between flex-column sm:flex-row">
-						<button pButton label="Nuevo cliente" class="p-button mb-2" icon="pi pi-plus"
-							(click)="dialogNuevoCliente()"></button>
-						<span class="p-input-icon-left mb-2">
-							<i class="pi pi-search"></i>
-							<input pInputText type="text" #filter placeholder="Buscar cliente" class="w-full" />
-						</span>
-					</div>
-				</ng-template>
-				<ng-template pTemplate="header">
-					<tr>
-						<th style="min-width: 2rem">
-							<div class="flex justify-content-between align-items-center">
-								N
-							</div>
-						</th>
-						<th style="min-width: 16rem">
-							<div class="flex justify-content-between align-items-center">
-								Cliente RUC
-								<p-columnFilter type="text" field="cliente.clienteRuc" display="menu"
-									placeholder="Buscar por ruc"></p-columnFilter>
-							</div>
-						</th>
-						<th style="min-width: 12rem">
-							<div class="flex justify-content-between align-items-center">
-								Nombres Completos
-								<p-columnFilter field="cliente.clienteApellido1" display="menu"
-									placeholder="Buscar por Primer Apellido">
-								</p-columnFilter>
-							</div>
-						</th>
-						<th style="min-width: 12rem">
-							<div class="flex justify-content-between align-items-center">
-								Email
-								<p-columnFilter field="cliente.clienteEmail" display="menu"
-									placeholder="Buscar por email">
-								</p-columnFilter>
-							</div>
-						</th>
-						<th style="min-width: 12rem">
-							<div class="flex justify-content-between align-items-center">
-								Tel&eacute;fono
-								<p-columnFilter field="cliente.clienteTelefono" display="menu"
-									placeholder="Buscar por telefono">
-								</p-columnFilter>
-							</div>
-						</th>
-						<th style="min-width: 12rem">
-							<div class="flex justify-content-between align-items-center">
-								Direcci&oacute;n
-								<p-columnFilter field="cliente.clienteDireccion" display="menu"
-									placeholder="Buscar por direccion">
-								</p-columnFilter>
-							</div>
-						</th>
-						<th style="min-width: 14rem">
-							<div class="flex justify-content-between align-items-center">
-								Fecha de registro
-								<p-columnFilter type="date" field="date" display="menu"
-									placeholder="mm/dd/yyyy"></p-columnFilter>
-							</div>
-						</th>
-						<th style="min-width: 10rem" colspan="2">
-							<div class="flex justify-content-between align-items-center">
-								Acciones
-							</div>
-						</th>
-					</tr>
-				</ng-template>
-				<ng-template pTemplate="body" let-rowIndex="rowIndex" let-cliente>
-					<tr>
-						<td>
-							{{ rowIndex + 1 }}
-						</td>
-						<td>
-							{{ cliente.clienteRuc }}
-						</td>
-						<td>
-							{{ cliente.clienteNombre1 + ' '+ cliente.clienteNombre2 + ' '+ cliente.clienteApellido1+ '
-							'+ cliente.clienteApellido2 }}
-						</td>
-						<td>
-							{{ cliente.clienteEmail }}
-						</td>
-						<td>
-							{{ cliente.clienteTelefono }}
-						</td>
-						<td>
-							{{ cliente.clienteDireccion }}
-						</td>
-						<td>
-							{{ cliente.fechaHoraReg }}
-						</td>
-						<td>
-							<p-button class="m-2" type="button" icon="pi pi-pencil"></p-button>
-							<p-button class="m-2" severity="danger" type="button" icon="pi pi-trash"></p-button>
-						</td>
-					</tr>
-				</ng-template>
-				<ng-template pTemplate="emptymessage">
-					<tr>
-						<td colspan="8">No hay clientes registrados.</td>
-					</tr>
-				</ng-template>
-				<ng-template pTemplate="loadingbody">
-					<tr>
-						<td colspan="8">Cargando clientes...</td>
-					</tr>
-				</ng-template>
-			</p-table>
-		</div>
+	  <div class="text-900 font-bold text-6xl mb-4 text-left">Clientes</div>
+	  <div class="card">
+		<h5>Lista de clientes</h5>
+		<p-table [value]="clientes" [loading]="loading">
+		  <ng-template pTemplate="caption">
+			<div class="flex justify-content-between flex-column sm:flex-row">
+			  <button pButton label="Nuevo cliente" class="p-button mb-2" icon="pi pi-plus" (click)="dialogNuevoCliente()"></button>
+			  <span class="p-input-icon-left mb-2">
+				<i class="pi pi-search"></i>
+				<input pInputText type="text" #filter placeholder="Buscar cliente" class="w-full" />
+			  </span>
+			</div>
+		  </ng-template>
+		  <ng-template pTemplate="header">
+			<tr>
+			  <th>N</th>
+			  <th>Nombres</th>
+			  <th>Identificación</th>
+			  <th>Fecha de ingreso</th>
+			  <th>Estatus</th>
+			  <th colspan="2">Acciones</th>
+			</tr>
+		  </ng-template>
+		  <ng-template pTemplate="body" let-rowIndex="rowIndex" let-cliente>
+			<tr>
+			  <td>{{ rowIndex + 1 }}</td>
+			  <td>{{ cliente.nombre }}</td>
+			  <td>{{ cliente.identificacion }}</td>
+			  <td>{{ cliente.fechaIngreso ? (cliente.fechaIngreso | date: 'dd/MM/yyyy') : '' }}</td>
+			  <td>{{ cliente.estatus.label }}</td>
+			  <td>
+				<button pButton icon="pi pi-pencil" class="p-button m-2"></button>
+				<button pButton icon="pi pi-trash" class="p-button m -2" (click)="eliminarCliente(cliente)"></button>
+			  </td>
+			</tr>
+		  </ng-template>
+		  <ng-template pTemplate="emptymessage">
+			<tr>
+			  <td colspan="8">No hay clientes registrados.</td>
+			</tr>
+		  </ng-template>
+		  <ng-template pTemplate="loadingbody">
+			<tr>
+			  <td colspan="8">Cargando clientes...</td>
+			</tr>
+		  </ng-template>
+		</p-table>
+	  </div>
 	</div>
-</div>
-<app-dialogcliente #dialogoCliente></app-dialogcliente>
+  </div>
+  
+  <!-- Dialogo para agregar o editar cliente -->
+  <app-dialogcliente (clienteGuardado)="onClienteGuardado($event)"></app-dialogcliente>
+  

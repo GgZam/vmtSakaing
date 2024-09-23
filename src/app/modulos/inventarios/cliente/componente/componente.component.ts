@@ -60,7 +60,17 @@ export class ComponenteComponent implements OnInit, AfterViewInit {
   dialogNuevoCliente() {
     this.dialogoCliente.visibleClient = true;
   }
-
+  
+  onClienteGuardado(nuevoCliente: any) {
+    this.clientes.push({
+      id: Math.max(...this.clientes.map(c => c.id), 0) + 1,
+      nombre: `${nuevoCliente.ClienteNombre1} ${nuevoCliente.ClienteNombre2} ${nuevoCliente.ClienteApellido1} ${nuevoCliente.ClienteApellido2}`.trim(),
+      identificacion: nuevoCliente.ClienteRuc,
+      fechaIngreso: new Date(nuevoCliente.FechaHoraReg),
+      estatus: nuevoCliente.Estado === 1 ? { label: 'Activo', value: 'activo' } : { label: 'Inactivo', value: 'inactivo' }
+    });
+    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Cliente guardado correctamente.' });
+  }
   cargarCliente(resp: any) {
     this.clientes = resp.data;
   }
