@@ -1,0 +1,32 @@
+<p-dialog [header]="'Registro de Bodega'" [(visible)]="visibleClient" [modal]="true" showEffect="fade"
+    [style]="{width: '50vw', height: '80%'}">
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="nombreBodega" class="font-semibold w-6rem">Nombre: </label>
+        <input [(ngModel)]="nombreb" pInputText id="nombreBodega" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="direccionbodega" class="font-semibold w-6rem">Direcci&oacute;n:</label>
+        <input [(ngModel)]="direccionb" pInputText id="direccionbodega" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="telefonobodega" class="font-semibold w-6rem">Tel&eacute;f&oacute;no:</label>
+        <input [(ngModel)]="telefono" pInputText id="telefonobodega" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="categoriaProducto" class="font-semibold w-6rem">Sucursal:</label>
+        <p-inputGroup>
+            <input [(ngModel)]="sucursal" [disabled]="true" pInputText placeholder="Seleccione una sucursal" />
+            <button type="button" pButton icon="pi pi-search" class="p-button" (click)="mostrarSucursal()"></button>
+        </p-inputGroup>
+    </div>
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="estadobodega" class="font-semibold w-6rem">Estado:</label>
+        <p-dropdown [options]="estado" optionLabel="label"></p-dropdown>
+    </div>
+    <p-divider type="solid" />
+    <div class="flex justify-content-end flex-column sm:flex-row">
+        <button pButton label="Guardar" class="p-button m-2"></button>
+        <button pButton label="Cancelar" class="p-button-outlined m-2" id="btnCerrarModal"
+            data-bs-dismiss="modal"></button>
+    </div>
+</p-dialog>

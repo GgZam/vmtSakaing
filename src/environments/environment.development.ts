@@ -5,5 +5,7 @@ export const environment = {
     pathGetClientes: '/Catalogo/GetCliente',
     pathGetProductos: '/Producto/GetProducto',
     pathPutProductos: '/Producto/PutProducto',
-    pathGetEmpresa: '/Empresa/GetEmpresa'
+    pathGetEmpresa: '/Empresa/GetEmpresa',
+    pathGetBodega: '/Bodega/GetBodega',
+    pathGetSucursal: '/Sucursal/GetSucursal'
 };

@@ -10,10 +10,11 @@ import { sesionGuard } from './guards/sesion.guard';
         RouterModule.forRoot([
             { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule), canActivate: [sesionGuard] },
-            { 
+            {
                 path: 'vmtdev', component: AppLayoutComponent,
                 children: [
                     { path: 'inventarios', loadChildren: () => import('./modulos/inventarios/inventario.module').then(m => m.InventarioModule) },
+                    { path: 'operaciones', loadChildren: () => import('./modulos/operaciones/operaciones.module').then(m => m.OperacionesModule) },
                     { path: 'home', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
                     { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },

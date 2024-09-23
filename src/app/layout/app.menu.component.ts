@@ -23,26 +23,17 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Inventarios',
                 items: [
-                    { label: 'Cliente', icon: 'pi pi-fw pi-users' , routerLink: ['/vmtdev/inventarios/cliente'] },
-                    { label: 'Producto', icon: 'pi pi-fw pi-box' , routerLink: ['/vmtdev/inventarios/producto'] },
+                    { label: 'Cliente', icon: 'pi pi-fw pi-users', routerLink: ['/vmtdev/inventarios/cliente'] },
+                    { label: 'Producto', icon: 'pi pi-fw pi-box', routerLink: ['/vmtdev/inventarios/producto'] },
                     { label: 'Empresa', icon: 'pi pi-fw pi-building', routerLink: ['/vmtdev/inventarios/empresa'] },
                     { label: 'Proveedor', icon: 'pi pi-fw pi-plus-circle', routerLink: ['/vmtdev/inventarios/proveedor'] },
-                    /*{ label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/vmtdev/uikit/formlayout'] },
-                    { label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/vmtdev/uikit/input'] },
-                    { label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/vmtdev/uikit/floatlabel'] },
-                    { label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/vmtdev/uikit/invalidstate'] },
-                    { label: 'Button', icon: 'pi pi-fw pi-box', routerLink: ['/vmtdev/uikit/button'] },
-                    { label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/vmtdev/uikit/table'] },
-                    { label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/vmtdev/uikit/list'] },
-                    { label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/vmtdev/uikit/tree'] },
-                    { label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/vmtdev/uikit/panel'] },
-                    { label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay'] },
-                    { label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/uikit/media'] },
-                    { label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu'], routerLinkActiveOptions: { paths: 'subset', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' } },
-                    { label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message'] },
-                    { label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file'] },
-                    { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts'] },
-                    { label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/uikit/misc'] }*/
+                    { label: 'Bodega', icon: 'pi pi-fw pi-bookmark', routerLink: ['/vmtdev/inventarios/bodega'] },
+                ]
+            },
+            {
+                label: 'Operaciones',
+                items: [
+                    { label: 'Stoc de Productos', icon: 'pi pi-fw pi-box', routerLink: ['/vmtdev/operaciones/stock'] },
                 ]
             },
             {

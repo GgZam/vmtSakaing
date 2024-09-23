@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'empresa',
     loadChildren: () => import('./empresa/empresa.module').then(m => m.EmpresaModule)
+  },
+  {
+    path: 'bodega',
+    loadChildren: () => import('./bodega/bodega.module').then(m => m.BodegaModule)
   }
 ];
 

@@ -6,15 +6,17 @@ import { environment } from 'src/environments/environment.development';
 @Injectable({
   providedIn: 'root'
 })
-export class ClientesService {
+export class BodegaService {
 
   private urlBase: string = environment.vmtDevApiUrl;
-  private uriGetClientes: string = environment.pathGetClientes;
+  private uriGetBodega: string = environment.pathGetBodega;
 
   constructor(private httpClient: HttpClient) { }
 
-  getClientes(rqGetClientes: any): Observable<any> {
-    let urlGetClientes = this.urlBase + this.uriGetClientes;
-    return this.httpClient.post(urlGetClientes, rqGetClientes);
+  getBodega(rqGetBodega: any): Observable<any> {
+    let urlGetBodega = this.urlBase + this.uriGetBodega;
+    return this.httpClient.post(urlGetBodega, rqGetBodega);
   }
+
+
 }

@@ -11,6 +11,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { ToastModule } from 'primeng/toast';
+import { FindcategoriaComponent } from "../../../shared/findcategoria/findcategoria.component";
+import { FindcategoriaModule } from 'src/app/shared/findcategoria/findcategoria.module';
 
 
 @NgModule({
@@ -27,7 +31,10 @@ import { FormsModule } from '@angular/forms';
     DropdownModule,
     DividerModule,
     InputTextModule,
-    FormsModule
-  ]
+    FormsModule,
+    ToastModule,
+    InputGroupModule,
+    FindcategoriaModule
+]
 })
 export class ProductoModule { }

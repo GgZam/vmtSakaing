@@ -1,51 +1,51 @@
 import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { ProductService } from 'src/app/demo/service/product.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
-import { DialogclienteComponent } from './dialogcliente/dialogcliente.component';
-import { ClientesService } from 'src/app/services/clientes.service';
+import { DialogbodegaComponent } from './dialogbodega/dialogbodega.component';
+import { BodegaService } from 'src/app/services/bodega.service';
 
 @Component({
   selector: 'app-componente',
-  templateUrl: './componente.component.html',
+  templateUrl: './bodega.component.html',
   styles: ``,
   providers: [MessageService, ConfirmationService]
 })
-export class ComponenteComponent implements OnInit, AfterViewInit {
+export class BodegaComponent implements OnInit, AfterViewInit {
 
   constructor(public layoutService: LayoutService, private messageService: MessageService) { }
   loading: boolean = false;
 
-  clienteService = inject(ClientesService);
+  bodegaService = inject(BodegaService);
 
   ngAfterViewInit(): void {
-    let datarqCliente = {
+    let datarqBodega = {
       "OpcionData": "all"
     }
 
-    let getClienterequest: any = {
+    let getBodegarequest: any = {
       User: '',
       IP: '',
-      Data: JSON.stringify(datarqCliente)
+      Data: JSON.stringify(datarqBodega)
     }
 
-    this.clienteService.getClientes(getClienterequest).subscribe({
-      next: (resCliente) => {
-        this.cargarCliente(resCliente);
+    this.bodegaService.getBodega(getBodegarequest).subscribe({
+      next: (resBodega) => {
+        this.cargarBodega(resBodega);
         this.loading = false;
       },
       error: (err) => {
         this.loading = false;
       }
     });
-
   }
 
   activityValues: number[] = [0, 100];
 
-  @ViewChild('dialogoCliente') dialogoCliente: DialogclienteComponent;
+  @ViewChild('dialogoEmpresa') dialogoBodega: DialogbodegaComponent;
 
-  clientes: any[] = [];
+  bodegas: any[] = [
+
+  ];
 
   statuses = [
     { label: 'Inactivo', value: 'unqualified' },
@@ -54,14 +54,16 @@ export class ComponenteComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
+
+
   }
 
 
-  dialogNuevoCliente() {
-    this.dialogoCliente.visibleClient = true;
+  dialogNuevaBodega() {
+    this.dialogoBodega.visibleClient = true;
   }
 
-  cargarCliente(resp: any) {
-    this.clientes = resp.data;
+  cargarBodega(resp: any) {
+    this.bodegas = resp.data;
   }
 }

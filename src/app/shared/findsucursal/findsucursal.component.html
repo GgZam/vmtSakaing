@@ -1,0 +1,45 @@
+<p-dialog #dialogSucursal closable="true" header="Sucursales" [(visible)]="mostrarFindSucursales">
+    <div class="flex align-items-end">
+        <div #idsucursalDiv class="m-2">
+            <label for="idsucursal" class="font-bold block mb-2"> ID </label>
+            <input pInputText [(ngModel)]="sucursalDefault.id" type="text" name="idsucursal" id="idsucursal"
+                placeholder="Buscar ID" pInputText>
+        </div>
+        <div #DescripcionSucursalDiv class="m-2">
+            <label for="nombresucursal" class="font-bold block mb-2"> Sucursal </label>
+            <input [style]="{width: '26vw'}" pInputText type="text" name="idsucursal" id="nombresucursal"
+                [(ngModel)]="sucursalDefault.valor" placeholder="Buscar por nombre de sucursal" pInputText>
+        </div>
+        <div #BotonBuscarSucursalDiv class="m-2">
+            <button pRipple pButton value="Buscar" (click)="findSucursal()">Buscar</button>
+        </div>
+    </div>
+    <div class="pt-3 text-align-center" *ngIf="visibleTable">
+        <span for="idcategoria" class=" font-bold block mb-3"> Da doble click para selecionar una sucursal
+        </span>
+        <p-table selectionMode="single" [(selection)]="sucursalSeleccionada" dataKey="id" [value]="listSucursal">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="min-width: 2rem">Id </th>
+                    <th style="min-width: 3rem">Sucursal</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-sucursal>
+                <tr [pSelectableRow]="empresa" [pSelectableRowIndex]="rowIndex" (dblclick)="seleccionarCerrar()">
+                    <td>{{ empresa.id }}</td>
+                    <td>{{ empresa.valor }}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="8">Sin resultados</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="loadingbody">
+                <tr>
+                    <td colspan="8">Cargando categorias...</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</p-dialog>
