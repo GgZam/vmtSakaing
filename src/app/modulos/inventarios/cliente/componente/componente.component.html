@@ -13,6 +13,7 @@
 			  </span>
 			</div>
 		  </ng-template>
+  
 		  <ng-template pTemplate="header">
 			<tr>
 			  <th>N</th>
@@ -23,24 +24,27 @@
 			  <th colspan="2">Acciones</th>
 			</tr>
 		  </ng-template>
+  
 		  <ng-template pTemplate="body" let-rowIndex="rowIndex" let-cliente>
 			<tr>
 			  <td>{{ rowIndex + 1 }}</td>
 			  <td>{{ cliente.nombre }}</td>
 			  <td>{{ cliente.identificacion }}</td>
 			  <td>{{ cliente.fechaIngreso ? (cliente.fechaIngreso | date: 'dd/MM/yyyy') : '' }}</td>
-			  <td>{{ cliente.estatus.label }}</td>
+			  <td>{{ cliente.estatus?.label || 'Sin estatus' }}</td>
 			  <td>
-				<button pButton icon="pi pi-pencil" class="p-button m-2"></button>
-				<button pButton icon="pi pi-trash" class="p-button m -2" (click)="eliminarCliente(cliente)"></button>
+				<button pButton icon="pi pi-pencil" class="p-button m-2" (click)="editarCliente(cliente)"></button>
+				<button pButton icon="pi pi-trash" class="p-button m-2" (click)="eliminarCliente(cliente)"></button>
 			  </td>
 			</tr>
 		  </ng-template>
+  
 		  <ng-template pTemplate="emptymessage">
 			<tr>
 			  <td colspan="8">No hay clientes registrados.</td>
 			</tr>
 		  </ng-template>
+  
 		  <ng-template pTemplate="loadingbody">
 			<tr>
 			  <td colspan="8">Cargando clientes...</td>

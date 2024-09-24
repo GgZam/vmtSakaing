@@ -22,11 +22,21 @@ export class DialogclienteComponent {
     { label: 'Inactivo', value: 'inactivo' }
   ];
 
-  @Output() clienteGuardado: EventEmitter<any> = new EventEmitter(); // Para emitir el nuevo cliente al componente principal
+  @Output() clienteGuardado: EventEmitter<any> = new EventEmitter();
 
   constructor(private clientesService: ClientesService, private messageService: MessageService) {}
 
-  // Método para guardar el cliente
+  // Método para cargar los datos del cliente seleccionado
+  cargarDatosCliente(cliente: any) {
+    this.primerNombre = cliente.nombre.split(' ')[0];
+    this.segundoNombre = cliente.nombre.split(' ')[1] || '';
+    this.apellido1 = cliente.apellido1;
+    this.apellido2 = cliente.apellido2;
+    this.identificacion = cliente.identificacion;
+    this.fechaIngreso = cliente.fechaIngreso;
+    this.estatus = cliente.estatus;
+  }
+
   guardar() {
     const nuevoCliente = {
       ClienteNombre1: this.primerNombre,
@@ -39,9 +49,9 @@ export class DialogclienteComponent {
     };
 
     this.clientesService.postCliente(nuevoCliente).subscribe({
-      next: (res) => {
+      next: () => {
         this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Cliente guardado correctamente.' });
-        this.clienteGuardado.emit(nuevoCliente); // Emitir el cliente guardado al componente padre
+        this.clienteGuardado.emit(nuevoCliente);
         this.visibleClient = false; // Cerrar el diálogo
       },
       error: () => {

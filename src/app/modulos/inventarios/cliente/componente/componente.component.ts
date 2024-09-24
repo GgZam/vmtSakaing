@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { ProductService } from 'src/app/demo/service/product.service';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
-import { DialogclienteComponent } from './dialogcliente/dialogcliente.component';
 import { ClientesService } from 'src/app/services/clientes.service';
+import { DialogclienteComponent } from './dialogcliente/dialogcliente.component';
+import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
   selector: 'app-componente',
@@ -13,65 +12,92 @@ import { ClientesService } from 'src/app/services/clientes.service';
 })
 export class ComponenteComponent implements OnInit, AfterViewInit {
 
-  constructor(public layoutService: LayoutService, private messageService: MessageService) { }
   loading: boolean = false;
+  clientes: any[] = [];
+
+  // Correcto uso de ViewChild con el componente Dialogcliente
+  @ViewChild(DialogclienteComponent) dialogoCliente!: DialogclienteComponent;
 
   clienteService = inject(ClientesService);
-
-  ngAfterViewInit(): void {
-    let datarqCliente = {
-      "OpcionData": "all"
-    }
-
-    let getClienterequest: any = {
-      User: '',
-      IP: '',
-      Data: JSON.stringify(datarqCliente)
-    }
-
-    this.clienteService.getClientes(getClienterequest).subscribe({
-      next: (resCliente) => {
-        this.cargarCliente(resCliente);
-        this.loading = false;
-      },
-      error: (err) => {
-        this.loading = false;
-      }
-    });
-
-  }
-
-  activityValues: number[] = [0, 100];
-
-  @ViewChild('dialogoCliente') dialogoCliente: DialogclienteComponent;
-
-  clientes: any[] = [];
 
   statuses = [
     { label: 'Inactivo', value: 'unqualified' },
     { label: 'Activo', value: 'qualified' }
   ];
 
-  ngOnInit(): void {
+  constructor(public layoutService: LayoutService, private messageService: MessageService) {}
 
+  ngAfterViewInit(): void {
+    let datarqCliente = {
+      OpcionData: "all"
+    };
+
+    let getClienterequest: any = {
+      User: '',
+      IP: '',
+      Data: JSON.stringify(datarqCliente)
+    };
+
+    this.clienteService.getClientes(getClienterequest).subscribe({
+      next: (resCliente) => {
+        this.cargarCliente(resCliente);
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      }
+    });
   }
 
+  ngOnInit(): void {}
 
+  // Método para abrir el diálogo
   dialogNuevoCliente() {
-    this.dialogoCliente.visibleClient = true;
+    if (this.dialogoCliente) {
+      this.dialogoCliente.visibleClient = true; // Abrir el diálogo
+    }
   }
-  
+
   onClienteGuardado(nuevoCliente: any) {
+    const estatus = nuevoCliente.Estado === 1
+      ? { label: 'Activo', value: 'activo' }
+      : { label: 'Inactivo', value: 'inactivo' };
+
     this.clientes.push({
       id: Math.max(...this.clientes.map(c => c.id), 0) + 1,
       nombre: `${nuevoCliente.ClienteNombre1} ${nuevoCliente.ClienteNombre2} ${nuevoCliente.ClienteApellido1} ${nuevoCliente.ClienteApellido2}`.trim(),
       identificacion: nuevoCliente.ClienteRuc,
       fechaIngreso: new Date(nuevoCliente.FechaHoraReg),
-      estatus: nuevoCliente.Estado === 1 ? { label: 'Activo', value: 'activo' } : { label: 'Inactivo', value: 'inactivo' }
+      estatus
     });
+    
     this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Cliente guardado correctamente.' });
   }
+
   cargarCliente(resp: any) {
-    this.clientes = resp.data;
+    this.clientes = resp.data.map((cliente: any) => {
+      const estatus = cliente.estado === 1
+        ? { label: 'Activo', value: 'activo' }
+        : { label: 'Inactivo', value: 'inactivo' };
+
+      return {
+        id: cliente.clienteId,
+        nombre: `${cliente.clienteNombre1} ${cliente.clienteNombre2} ${cliente.clienteApellido1} ${cliente.clienteApellido2}`.trim(),
+        identificacion: cliente.clienteRuc,
+        fechaIngreso: new Date(cliente.fechaHoraReg),
+        estatus
+      };
+    });
+  }
+
+  eliminarCliente(cliente: any) {
+    // Implementar la lógica de eliminación aquí
+  }
+
+  editarCliente(cliente: any) {
+    if (this.dialogoCliente) {
+      this.dialogoCliente.cargarDatosCliente(cliente); // Cargar los datos del cliente en el diálogo
+      this.dialogoCliente.visibleClient = true; // Mostrar el diálogo
+    }
   }
 }
