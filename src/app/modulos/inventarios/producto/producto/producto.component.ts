@@ -5,7 +5,7 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { DialogproductoComponent } from './dialogproducto/dialogproducto.component';
 import { ProductosService } from 'src/app/services/productos.service';
 import { AccionApi } from 'src/app/datasource/accionapienum';
-import { CategoriaEnum } from 'src/app/datasource/categiriaenum';
+import { CategoriaEnum } from 'src/app/datasource/categoriaenum';
 
 @Component({
   selector: 'app-componente',

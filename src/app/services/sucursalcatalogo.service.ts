@@ -16,6 +16,6 @@ export class SucursalcatalogoService {
 
   findSucursales(rqGetSucursal: any): Observable<any> {
     let urlGetSucursal = this.urlBase + this.urlSucursal;
-    return this.httpClient.post(urlGetSucursal, rqGetSucursal);
+    return this.httpClient.get(urlGetSucursal, rqGetSucursal);
   }
 }

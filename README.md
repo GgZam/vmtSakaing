@@ -4,7 +4,7 @@
 
 ## Cliente
 
-<img src="./src/assets/cliente.png"/>
+<img src="./src/assets/clientes.png"/>
 
 ## Producto
 <img src="./src/assets/producto.png"/>
@@ -13,7 +13,5 @@
 <img src="./src/assets/empresa.png"/>
 
 ## Bodega
-<img src="./src/assets/bodega.png"/>
-
-
+<img src="./src/assets/Bodega.png"/>
 

@@ -15,7 +15,7 @@ export class BodegaService {
 
   getBodega(rqGetBodega: any): Observable<any> {
     let urlGetBodega = this.urlBase + this.uriGetBodega;
-    return this.httpClient.post(urlGetBodega, rqGetBodega);
+    return this.httpClient.get(urlGetBodega, rqGetBodega);
   }
 
 

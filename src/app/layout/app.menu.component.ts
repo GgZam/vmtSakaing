@@ -23,17 +23,17 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Inventarios',
                 items: [
-                    { label: 'Cliente', icon: 'pi pi-fw pi-users', routerLink: ['/vmtdev/inventarios/cliente'] },
-                    { label: 'Producto', icon: 'pi pi-fw pi-box', routerLink: ['/vmtdev/inventarios/producto'] },
+                    { label: 'Cliente', icon: 'pi pi-fw pi-users' , routerLink: ['/vmtdev/inventarios/cliente'] },
+                    { label: 'Producto', icon: 'pi pi-fw pi-box' , routerLink: ['/vmtdev/inventarios/producto'] },
                     { label: 'Empresa', icon: 'pi pi-fw pi-building', routerLink: ['/vmtdev/inventarios/empresa'] },
                     { label: 'Proveedor', icon: 'pi pi-fw pi-plus-circle', routerLink: ['/vmtdev/inventarios/proveedor'] },
-                    { label: 'Bodega', icon: 'pi pi-fw pi-bookmark', routerLink: ['/vmtdev/inventarios/bodega'] },
+                    { label: 'Bodega', icon: 'pi pi-fw pi-plus-circle', routerLink: ['/vmtdev/inventarios/bodega'] },
                 ]
             },
             {
                 label: 'Operaciones',
                 items: [
-                    { label: 'Stoc de Productos', icon: 'pi pi-fw pi-box', routerLink: ['/vmtdev/operaciones/stock'] },
+                    { label: 'Stock de productos', icon: 'pi pi-fw pi-box' , routerLink: ['/vmtdev/operaciones/stock'] },
                 ]
             },
             {

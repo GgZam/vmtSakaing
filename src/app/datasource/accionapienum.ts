@@ -1,4 +1,4 @@
-export enum AccionApi {
+export enum AccionApi{
     GUARDAR = 1,
-    ACTUALIZAR = 2
+    ACTUALIZAR= 2
 }

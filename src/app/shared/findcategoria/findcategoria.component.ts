@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Dialog } from 'primeng/dialog';
 import { categoriaCatalogo } from 'src/app/datasource/catalogos/catalogos';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-findcategoria',
@@ -10,8 +11,9 @@ import { categoriaCatalogo } from 'src/app/datasource/catalogos/catalogos';
 })
 export class FindcategoriaComponent {
 
-  constructor(private dialogService: DialogService, private messageService: MessageService) { }
-  @ViewChild('dialogoCategoria') dialogoCategoria: DynamicDialogRef;
+
+  constructor(private dialogService: DialogService, private messageService: MessageService){}
+  @ViewChild('dialogoCategoria')  dialogoCategoria: DynamicDialogRef;
 
   @Output()
   seleccionarCategoria = new EventEmitter();
@@ -29,10 +31,11 @@ export class FindcategoriaComponent {
       this.dataCategoria = categoriaCatalogo;
       this.visibleTable = true;
     },
-      2000)
+    2000)
   }
 
   seleccionarCerrar() {
     this.seleccionarCategoria.emit();
   }
+
 }

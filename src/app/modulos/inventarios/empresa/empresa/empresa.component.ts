@@ -3,7 +3,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { DialogempresaComponent } from './dialogempresa/dialogempresa.component';
-import { EmpresasService } from 'src/app/services/empresas.service';
+import { EmpresaService } from 'src/app/services/empresa.service';
 
 @Component({
   selector: 'app-componente',
@@ -16,7 +16,7 @@ export class EmpresaComponent implements OnInit, AfterViewInit {
   constructor(public layoutService: LayoutService, private messageService: MessageService) { }
   loading: boolean = false;
 
-  empresaService = inject(EmpresasService);
+  empresaService = inject(EmpresaService);
 
   ngAfterViewInit(): void {
     let datarqEmpresa = {
@@ -29,7 +29,7 @@ export class EmpresaComponent implements OnInit, AfterViewInit {
       Data: JSON.stringify(datarqEmpresa)
     }
 
-    this.empresaService.getEmpresa(getEmpresarequest).subscribe({
+    this.empresaService.findCatalogoEmpresa(getEmpresarequest).subscribe({
       next: (resEmpresa) => {
         this.cargarEmpresa(resEmpresa);
         this.loading = false;

@@ -48,7 +48,7 @@ export class DialogclienteComponent {
       Estado: this.estatus.value === 'activo' ? 1 : 0
     };
 
-    this.clientesService.postCliente(nuevoCliente).subscribe({
+    this.clientesService.getClientes(nuevoCliente).subscribe({
       next: () => {
         this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Cliente guardado correctamente.' });
         this.clienteGuardado.emit(nuevoCliente);

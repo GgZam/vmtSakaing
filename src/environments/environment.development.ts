@@ -1,14 +1,12 @@
 export const environment = {
     production: false,
-    vmtDevApiUrl: 'http://localhost:5073',
-    pathAutetication: '/UsuarioAutenticacion/GetUsuarioAutenticacion',
-    pathGetClientes: '/Catalogo/GetCliente',
-    pathPutClientes: '/Catalogo/PutCliente',
-    pathPostClientes: '/Catalogo/PostCliente',
+    vmtDevApiUrl: 'https://localhost:7261',
+    pathAutetication: '/Usuario/RestUsuarioAutenticacion',
     pathGetProductos: '/Producto/GetProducto',
-    pathPutProductos: '/Producto/PutProducto',
-    pathPostProductos: '/Catalogo/PostProducto',
     pathGetEmpresa: '/Empresa/GetEmpresa',
+    pathGetProveedor: '/Proveedor/RestProveedor',
     pathGetBodega: '/Bodega/GetBodega',
-    pathGetSucursal: '/Sucursal/GetSucursal'
+    pathGetSucursal: '/Sucursal/GetSucursal',
+    pathGetClientes: '/Catalogo/GetCliente',
+
 };
