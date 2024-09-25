@@ -1,0 +1,35 @@
+<p-dialog #dialogoGenerico [header]="'Información del Proveedor'" [(visible)]="visibleClient" [modal]="true" showEffect="fade" [style]="{ height: '80%'}">
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="nombreProveedor" class="font-semibold w-6rem">Nombre</label>
+        <input pInputText [(ngModel)]="nombre" id="nombreProveedor" class="flex-auto" name="nombre" autocomplete="off" />
+    </div>
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="rucProveedor" class="font-semibold w-6rem">RUC</label>
+        <input pInputText [(ngModel)]="ruc" id="rucProveedor" class="flex-auto" name="ruc" autocomplete="off" />
+    </div>
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="razonProveedor" class="font-semibold w-6rem">Razón Social</label>
+        <input pInputText [(ngModel)]="razon" id="razonProveedor" class="flex-auto" name="razon" autocomplete="off" />
+    </div>
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="direccionProveedor" class="font-semibold w-6rem">Dirección</label>
+        <input pInputText [(ngModel)]="direccion" id="direccionProveedor" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="telefonoProveedor" class="font-semibold w-6rem">Teléfono</label>
+        <input pInputText [(ngModel)]="telefono" id="telefonoProveedor" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="ciudadProveedor" class="font-semibold w-6rem">Ciudad</label>
+        <p-dropdown [options]="ciudades" [(ngModel)]="ciudad" optionLabel="label"></p-dropdown>
+    </div>
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="estadoProveedor" class="font-semibold w-6rem">Estado</label>
+        <p-dropdown [options]="statuses" [(ngModel)]="estado" optionLabel="label"></p-dropdown>
+    </div>
+    <p-divider type="solid" />
+    <div class="flex justify-content-end flex-column sm:flex-row">
+        <button pButton label="Guardar" class="p-button m-2" (click)="guardar()"></button>
+        <button pButton label="Cancelar" class="p-button-outlined m-2" (click)="visibleClient=false"></button>
+    </div>
+</p-dialog>
