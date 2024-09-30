@@ -17,16 +17,35 @@ export class ProveedorComponent implements OnInit, AfterViewInit {
 
   @ViewChild(DialogproveedorComponent) dialogoProveedor: DialogproveedorComponent;
 
-  constructor(private messageService: MessageService) {}
+  constructor(private messageService: MessageService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngAfterViewInit(): void {
     this.cargarProveedores();
   }
 
   cargarProveedores() {
-    const params = { identificacion: 0 }; // Enviamos el valor 0 como identificacion
+    let datarqProveedor = {
+      "OpcionData": "all"
+    }
+
+    let getProveedorrequest: any = {
+      User: '',
+      IP: '',
+      Data: JSON.stringify(datarqProveedor)
+    }
+
+    this.proveedorService.getProveedores(getProveedorrequest).subscribe({
+      next: (resProveedor) => {
+        this.cargarProveedor(resProveedor);
+        this.loading = false;
+      },
+      error: (err) => {
+        this.loading = false;
+      }
+    });
+    /*const params = { identificacion: 0 }; // Enviamos el valor 0 como identificacion
     this.proveedorService.getProveedores(params).subscribe({
       next: (resProveedores) => {
         if (resProveedores && resProveedores.data) {
@@ -47,7 +66,11 @@ export class ProveedorComponent implements OnInit, AfterViewInit {
         console.error('Error al cargar proveedores', err);
         this.loading = false;
       }
-    });
+    });*/
+  }
+
+  cargarProveedor(resp: any) {
+    this.proveedores = resp.data;
   }
 
   dialogNuevoProveedor() {

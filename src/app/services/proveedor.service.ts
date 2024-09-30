@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment.development';
 export class ProveedorService {
 
   private urlBase: string = environment.vmtDevApiUrl;
-  private uriGetProveedores: string = '/Proveedor/GetProveedor'; // Asegúrate de que esta ruta es correcta
+  private uriGetProveedores: string = environment.pathGetProveedores; // Asegúrate de que esta ruta es correcta
   private uriPostProveedores: string = '/Proveedor/PostProveedor'; // Asegúrate de que esta ruta es correcta
 
   constructor(private httpClient: HttpClient) { }
@@ -17,8 +17,7 @@ export class ProveedorService {
   // Consulta: Obtener todos los proveedores
   getProveedores(params: any): Observable<any> {
     let urlGetProveedor = this.urlBase + this.uriGetProveedores;
-    let httpParams = new HttpParams({ fromObject: params });
-    return this.httpClient.get(urlGetProveedor, { params: httpParams });
+    return this.httpClient.post(urlGetProveedor, params);
   }
 
   // Mantenimiento: Guardar o actualizar proveedores

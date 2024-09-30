@@ -27,11 +27,11 @@
                 <ng-template pTemplate="body" let-rowIndex="rowIndex" let-proveedor>
                     <tr>
                         <td>{{ rowIndex + 1 }}</td>
-                        <td>{{ proveedor.nombre }}</td>
-                        <td>{{ proveedor.ruc }}</td>
-                        <td>{{ proveedor.razon }}</td>
-                        <td>{{ proveedor.ciudad }}</td>
-                        <td>{{ proveedor.estado == 'activo' ? 'Activo' : 'Inactivo' }}</td>
+                        <td>{{ proveedor.provNomComercial }}</td>
+                        <td>{{ proveedor.provRuc }}</td>
+                        <td>{{ proveedor.provRazon }}</td>
+                        <td>{{ proveedor.ciudadNombre }}</td>
+                        <td>{{ proveedor.estado == 'A' ? 'Activo' : 'Inactivo' }}</td>
                         <td>
                             <button class="m-2" pButton icon="pi pi-pencil" (click)="editarProveedor(proveedor)"></button>
                             <button class="m-2" pButton icon="pi pi-trash" severity="danger"></button>
