@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewChild } 
 import { Dialog } from 'primeng/dialog';
 import { AccionApi } from 'src/app/datasource/accionapienum';
 import { FindcategoriaComponent } from 'src/app/shared/findcategoria/findcategoria.component';
+import { FindempresaComponent } from 'src/app/shared/findempresa/findempresa.component';
+import { FindproveedorComponent } from 'src/app/shared/findproveedor/findproveedor.component';
 
 @Component({
   selector: 'app-dialogcliente',
@@ -16,6 +18,8 @@ export class DialogproductoComponent {
   @ViewChild(Dialog) dialogoGenerico: Dialog;
 
   @ViewChild(FindcategoriaComponent) categoriaComponente: FindcategoriaComponent;
+  @ViewChild(FindempresaComponent) empresaComponente: FindempresaComponent;
+  @ViewChild(FindproveedorComponent) proveedorComponente: FindproveedorComponent;
 
   @Input()
   registro: any;
@@ -30,7 +34,7 @@ export class DialogproductoComponent {
   nombre: string;
   precio: number;
   categoria: any;
-  empresa: string;
+  empresa: any;
   proveedor: string;
   estatus: any;
 
@@ -85,9 +89,28 @@ export class DialogproductoComponent {
   }
 
   fijarCategoria() {
-    this.categoria = this.categoriaComponente.categoriaSeleccionada.valor;
+    this.categoria = this.categoriaComponente.categoriaSeleccionada.categoriaDescrip;
     this.categoriaComponente.dialogoCategoria.close(this.categoria);
     this.changeDetector.detach();
   }
 
+  mostrarEmpresa() {
+    this.empresaComponente.mostrarEmpresas = true;
+  }
+
+  fijarEmpresa() {
+    this.empresa = this.empresaComponente.empresaSeleccionada.nombre;
+    this.empresaComponente.dialogEmpresa.close(this.empresa);
+    this.changeDetector.detach();
+  }
+
+  mostrarProveedor() {
+    this.proveedorComponente.mostrarProveedor = true;
+  }
+
+  fijarProveedor() {
+    this.proveedor = this.proveedorComponente.proveedorSeleccionada.provNomComercial;
+    this.proveedorComponente.dialogProveedor.close(this.proveedor);
+    this.changeDetector.detach();
+  }
 }

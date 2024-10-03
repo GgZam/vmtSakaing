@@ -15,6 +15,8 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { ToastModule } from 'primeng/toast';
 import { FindcategoriaComponent } from "../../../shared/findcategoria/findcategoria.component";
 import { FindcategoriaModule } from 'src/app/shared/findcategoria/findcategoria.module';
+import { FindempresaModule } from "../../../shared/findempresa/findempresa.module";
+import { FindproveedorModule } from "../../../shared/findproveedor/findproveedor.module";
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { FindcategoriaModule } from 'src/app/shared/findcategoria/findcategoria.
     FormsModule,
     ToastModule,
     InputGroupModule,
-    FindcategoriaModule
+    FindcategoriaModule,
+    FindempresaModule,
+    FindproveedorModule
 ]
 })
 export class ProductoModule { }

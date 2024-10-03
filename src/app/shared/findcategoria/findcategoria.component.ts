@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, inject, Output, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { categoriaCatalogo } from 'src/app/datasource/catalogos/catalogos';
+import { CategoriaService } from 'src/app/services/categoria.service';
 
 @Component({
   selector: 'app-findcategoria',
@@ -11,6 +11,9 @@ import { categoriaCatalogo } from 'src/app/datasource/catalogos/catalogos';
 export class FindcategoriaComponent {
 
   constructor(private dialogService: DialogService, private messageService: MessageService) { }
+
+  categoriaService = inject(CategoriaService);
+
   @ViewChild('dialogoCategoria') dialogoCategoria: DynamicDialogRef;
 
   @Output()
@@ -25,11 +28,31 @@ export class FindcategoriaComponent {
   visibleTable: boolean = false;
 
   findCategorias() {
-    setTimeout(() => {
-      this.dataCategoria = categoriaCatalogo;
-      this.visibleTable = true;
-    },
-      2000)
+    let datarq = {
+      "OpcionData": "all"
+    }
+
+    let getCategoriarequest: any = {
+      User: '',
+      IP: '',
+      Data: datarq
+    }
+
+    this.categoriaService.getCategoria(getCategoriarequest).subscribe({
+      next: (resCategoria) => {
+        setTimeout(() => {
+          this.cargarCategoria(resCategoria);
+          this.visibleTable = true;
+        },
+          2000)
+      },
+      error: (err) => {
+      }
+    });
+  }
+
+  cargarCategoria(resp: any) {
+    this.dataCategoria = resp.data;
   }
 
   seleccionarCerrar() {

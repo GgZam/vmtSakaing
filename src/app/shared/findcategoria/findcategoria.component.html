@@ -26,8 +26,8 @@
             </ng-template>
             <ng-template pTemplate="body" let-categoria>
                 <tr [pSelectableRow]="categoria" [pSelectableRowIndex]="rowIndex" (dblclick)="seleccionarCerrar()">
-                    <td>{{ categoria.id }}</td>
-                    <td>{{ categoria.valor }}</td>
+                    <td>{{ categoria.categoriaId }}</td>
+                    <td>{{ categoria.categoriaDescrip }}</td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">

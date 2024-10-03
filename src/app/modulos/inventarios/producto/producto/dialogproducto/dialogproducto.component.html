@@ -1,27 +1,34 @@
-<p-dialog #dialogoGenerico [header]="'Información del Producto'" [(visible)]="visibleClient" [modal]="true" showEffect="fade"
-    [style]="{ height: '80%'}">
+<p-dialog #dialogoGenerico [header]="'Información del Producto'" [(visible)]="visibleClient" [modal]="true"
+    showEffect="fade" [style]="{ height: '80%'}">
     <div class="flex align-items-center gap-3 mb-3">
         <label for="nombreProducto" class="font-semibold w-6rem">Nombre</label>
         <input pInputText [(ngModel)]="nombre" id="nombreProducto" class="flex-auto" name="nombre" autocomplete="off" />
     </div>
     <div class="flex align-items-center gap-3 mb-3">
         <label for="precioProducto" class="font-semibold w-6rem">Precio</label>
-        <input name="precio" [ngModel]="precio | currency" pInputText id="precioProducto" class="flex-auto" autocomplete="off" />
+        <input name="precio" [ngModel]="precio | currency" pInputText id="precioProducto" class="flex-auto"
+            autocomplete="off" />
     </div>
     <div class="flex align-items-center gap-3 mb-3">
         <label for="categoriaProducto" class="font-semibold w-6rem">Categor&iacute;a</label>
         <p-inputGroup>
             <input [(ngModel)]="categoria" [disabled]="true" pInputText placeholder="Seleccione su categoría" />
-            <button type="button" pButton icon="pi pi-search"  class="p-button" (click)="mostrarCateogria()"></button>
+            <button type="button" pButton icon="pi pi-search" class="p-button" (click)="mostrarCateogria()"></button>
         </p-inputGroup>
     </div>
     <div class="flex align-items-center gap-3 mb-3">
         <label for="empresaProducto" class="font-semibold w-6rem">Empresa</label>
-        <input pInputText id="empresaProducto" [(ngModel)]="empresa" class="flex-auto" autocomplete="off" name="categoria" />
+        <p-inputGroup>
+            <input [(ngModel)]="empresa" [disabled]="true" pInputText placeholder="Seleccione una empresa" />
+            <button type="button" pButton icon="pi pi-search" class="p-button" (click)="mostrarEmpresa()"></button>
+        </p-inputGroup>
     </div>
     <div class="flex align-items-center gap-3 mb-3">
         <label for="proveedorProducto" class="font-semibold w-6rem">Proveedor</label>
-        <input pInputText id="proveedorProducto" [(ngModel)]="proveedor" class="flex-auto" autocomplete="off" name="Proveedor"/>
+        <p-inputGroup>
+            <input [(ngModel)]="proveedor" [disabled]="true" pInputText placeholder="Seleccione un proveedor" />
+            <button type="button" pButton icon="pi pi-search" class="p-button" (click)="mostrarProveedor()"></button>
+        </p-inputGroup>
     </div>
 
     <div class="flex align-items-center gap-3 mb-3">
@@ -35,3 +42,5 @@
     </div>
 </p-dialog>
 <app-findcategoria (seleccionarCategoria)="fijarCategoria()"></app-findcategoria>
+<app-findempresa (seleccionarEmpresa)="fijarEmpresa()"></app-findempresa>
+<app-findproveedor (seleccionarProveedor)="fijarProveedor()"></app-findproveedor>

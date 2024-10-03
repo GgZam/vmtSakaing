@@ -41,7 +41,7 @@ export class BodegaComponent implements OnInit, AfterViewInit {
 
   activityValues: number[] = [0, 100];
 
-  @ViewChild('dialogoEmpresa') dialogoBodega: DialogbodegaComponent;
+  @ViewChild(DialogbodegaComponent) dialogoBodega: DialogbodegaComponent;
 
   bodegas: any[] = [
 

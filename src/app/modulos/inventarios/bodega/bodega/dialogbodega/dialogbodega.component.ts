@@ -46,4 +46,10 @@ export class DialogbodegaComponent {
   mostrarSucursal() {
     this.bodegaComponente.mostrarFindSucursales = true;
   }
+
+  fijarSucursal() {
+    this.sucursal = this.bodegaComponente.sucursalSeleccionada.sucursalNombre;
+    this.bodegaComponente.dialogSucursal.close(this.sucursal);
+    this.changeDetector.detach();
+  }
 }

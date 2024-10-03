@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FindsucursalComponent } from './findsucursal.component';
+import { FindproveedorComponent } from './findproveedor.component';
 import { DialogModule } from 'primeng/dialog';
-import { TableModule } from 'primeng/table';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
@@ -13,7 +13,7 @@ import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
-    FindsucursalComponent
+    FindproveedorComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +26,7 @@ import { InputTextModule } from 'primeng/inputtext';
     InputTextModule
   ],
   exports: [
-    FindsucursalComponent
+    FindproveedorComponent
   ]
 })
-export class FindsucursalModule { }
+export class FindproveedorModule { }

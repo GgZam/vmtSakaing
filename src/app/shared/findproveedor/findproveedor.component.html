@@ -1,0 +1,44 @@
+<p-dialog #dialogProveedor closable="true" header="Proveedores" [(visible)]="mostrarProveedor">
+    <div class="flex align-items-end">
+        <div #idProveedorDiv class="m-2">
+            <label for="idproveedor" class="font-bold block mb-2"> ID </label>
+            <input pInputText type="text" name="idproveedor" id="idproveedor" placeholder="Buscar ID" pInputText>
+        </div>
+        <div #DescripcionProveedorDiv class="m-2">
+            <label for="nombreproveedor" class="font-bold block mb-2"> Proveedor </label>
+            <input [style]="{width: '26vw'}" pInputText type="text" name="nombreproveedor" id="nombreproveedor"
+                placeholder="Buscar por nombre del proveedor" pInputText>
+        </div>
+        <div #BotonBuscarEmpresaDiv class="m-2">
+            <button pRipple pButton value="Buscar" (click)="findProveedor()">Buscar</button>
+        </div>
+    </div>
+    <div class="pt-3 text-align-center" *ngIf="visibleTable">
+        <span for="idproveedor" class=" font-bold block mb-3"> Da doble click para selecionar un proveedor
+        </span>
+        <p-table selectionMode="single" [(selection)]="proveedorSeleccionada" dataKey="id" [value]="dataProveedor">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="min-width: 2rem">Id </th>
+                    <th style="min-width: 3rem">Proveedor</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-proveedor>
+                <tr [pSelectableRow]="proveedor" [pSelectableRowIndex]="rowIndex" (dblclick)="seleccionarCerrar()">
+                    <td>{{ proveedor.provId }}</td>
+                    <td>{{ proveedor.provNomComercial }}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="8">Sin resultados</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="loadingbody">
+                <tr>
+                    <td colspan="8">Cargando proveedor...</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</p-dialog>

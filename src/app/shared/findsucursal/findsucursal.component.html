@@ -15,19 +15,21 @@
         </div>
     </div>
     <div class="pt-3 text-align-center" *ngIf="visibleTable">
-        <span for="idcategoria" class=" font-bold block mb-3"> Da doble click para selecionar una sucursal
+        <span for="idsucursal" class=" font-bold block mb-3"> Da doble click para selecionar una sucursal
         </span>
-        <p-table selectionMode="single" [(selection)]="sucursalSeleccionada" dataKey="id" [value]="listSucursal">
+        <p-table selectionMode="single" [(selection)]="sucursalSeleccionada" dataKey="id" [value]="dataSucursal">
             <ng-template pTemplate="header">
                 <tr>
                     <th style="min-width: 2rem">Id </th>
                     <th style="min-width: 3rem">Sucursal</th>
+                    <th style="min-width: 3rem">Direcci&oacute;n</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-sucursal>
-                <tr [pSelectableRow]="empresa" [pSelectableRowIndex]="rowIndex" (dblclick)="seleccionarCerrar()">
-                    <td>{{ empresa.id }}</td>
-                    <td>{{ empresa.valor }}</td>
+                <tr [pSelectableRow]="sucursal" [pSelectableRowIndex]="rowIndex" (dblclick)="seleccionarCerrar()">
+                    <td>{{ sucursal.sucursalId }}</td>
+                    <td>{{ sucursal.sucursalNombre }}</td>
+                    <td>{{ sucursal.sucursalDireccion }}</td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">
@@ -37,7 +39,7 @@
             </ng-template>
             <ng-template pTemplate="loadingbody">
                 <tr>
-                    <td colspan="8">Cargando categorias...</td>
+                    <td colspan="8">Cargando sucursales...</td>
                 </tr>
             </ng-template>
         </p-table>

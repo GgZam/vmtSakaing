@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { CatalogoBase } from 'src/app/datasource/interface/interface.base';
@@ -14,15 +14,18 @@ export class FindsucursalComponent {
   constructor(private sucursalService: SucursalcatalogoService, private dialogService: DialogService) { }
   @ViewChild('dialogSucursal') dialogSucursal: DynamicDialogRef;
 
+  @Output()
+  seleccionarSucursal = new EventEmitter();
+
   responseSimulate: any;
 
-  mostrarFindSucursales: boolean = true;
+  mostrarFindSucursales: boolean = false;
 
   visibleTable: boolean = false;
 
   sucursalSeleccionada: any;
 
-  listSucursal: CatalogoBase[];
+  dataSucursal: any;
 
   sucursalDefault: CatalogoBase = {
     id: '',
@@ -31,25 +34,34 @@ export class FindsucursalComponent {
 
   findSucursal() {
     let qrDataSucursal = {
-      idSucursal: this.sucursalDefault.id,
-      descripcionSucursal: this.sucursalDefault.valor
+      "OpcionData": "all"
     }
 
-    this.sucursalService.findSucursales(qrDataSucursal).subscribe({
-      next: (resp) => {
-        if (resp.codeResp === 'Ok') {
-          let lsucursales: any[] = resp.data.sucursal;
-          lsucursales.forEach(element => {
-            let idSucursal = element.idSucursal;
-            let descripcionSucursal = element.sucursalcatalogo;
-          });
-        }
+    let getCategoriarequest: any = {
+      User: '',
+      IP: '',
+      Data: qrDataSucursal
+    }
+
+    this.sucursalService.findSucursales(getCategoriarequest).subscribe({
+      next: (res) => {
+        setTimeout(() => {
+          this.cargarSucursales(res);
+          this.visibleTable = true;
+        },
+          2000)
+      },
+      error: (err) => {
       }
-    })
+    });
+  }
+
+  cargarSucursales(resp: any) {
+    this.dataSucursal = resp.data;
   }
 
   seleccionarCerrar() {
-
+    this.seleccionarSucursal.emit();
   }
 
 }

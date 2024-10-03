@@ -11,6 +11,7 @@ export const environment = {
     pathGetEmpresa: '/Empresa/GetEmpresa',
     pathGetBodega: '/Bodega/GetBodega',
     pathGetSucursal: '/Sucursal/GetSucursal',
+    pathGetCategoria: '/Catalogo/GetCategoria',
     
     // Nuevas rutas para proveedores
     pathGetProveedores: '/Proveedor/GetProveedor',
